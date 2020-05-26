@@ -14,6 +14,7 @@ console.log('Original scripts section: ', packageJson.scripts, '\n\n');
 // prettier-ignore
 const newScriptsSection = {
   ...packageJson.scripts,
+  test: "jest ./src/* --colors",
   start: "nodemon --exec babel-node src/index.js",
   prettify: "prettier --config .prettierrc.json --ignore-path .prettierignore --write \"src/**/*.js\"",
   checkPrettier: "prettier --config .prettierrc.json --ignore-path .prettierignore --check \"src/**/*.js\"",
