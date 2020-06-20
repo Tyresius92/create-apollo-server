@@ -22,6 +22,10 @@ cp ~/github/create-apollo-server/.prettierrc.json ./$1/.prettierrc.json;
 echo "Copying Babel Config to '$1'";
 cp ~/github/create-apollo-server/.babelrc ./$1/.babelrc;
 
+echo "Copying color printing script to '$1'";
+mkdir ./$1/scripts;
+cp ~/github/cra-wrapper/echo.js ./$1/scripts/echo.js;
+
 echo "Adding custom scripts to package.json";
 node ~/github/create-apollo-server/addScriptsToPackageJson.js $1;
 
