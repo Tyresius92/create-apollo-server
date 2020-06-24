@@ -6,7 +6,7 @@ pushd $1;
 npm init --yes;
 
 echo "Installing dependencies";
-npm install --save apollo-server graphql;
+npm install --save apollo-server graphql lodash;
 
 echo "Installing dev dependencies";
 npm install --save-dev jest babel-jest eslint prettier nodemon @babel/core @babel/node @babel/preset-env;
@@ -76,7 +76,9 @@ mkdir schema;
 pushd schema;
 
 touch index.js;
-echo "import {
+echo "import {merge} from 'lodash';
+
+import {
   RootQueryType,
   RootQueryResolvers,
 } from './QueryType.js';
@@ -90,10 +92,10 @@ export const typeDefs = [
   ExampleQueryType,
 ];
 
-export const resolvers = {
-  ...RootQueryResolvers,
-  ...ExampleQueryResolvers,
-};" >> index.js;
+export const resolvers = merge(
+  RootQueryResolvers,
+  ExampleQueryResolvers,
+);" >> index.js;
 
 touch QueryType.js;
 echo 'import { gql } from "apollo-server";
